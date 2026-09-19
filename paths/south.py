@@ -1,5 +1,6 @@
 from banners.game_over import game_over
 from ghost_img.ghost_forest import ghost_forest
+from utils.enums import SouthState
 from utils.helpers import choose, typewriter_print
 
 
@@ -17,4 +18,5 @@ def go_south(state, continue_game):
     choose(["Turn back"])
 
     typewriter_print("You turn around and head back.", state=state)
+    state.south_state = SouthState.LOCKED
     continue_game(state)

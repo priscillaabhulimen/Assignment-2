@@ -1,8 +1,8 @@
 from town_img.night_town import night_town
-from utils.enums import PaleState, LightState
+from utils.enums import LightState
 from utils.helpers import typewriter_print
 from utils.endings import trapped_in_town
-from banners.game_ending import game_ending, town_day
+from banners.game_ending import town_day
 from utils.states import advance_pale
 import time
 

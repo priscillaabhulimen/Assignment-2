@@ -1,3 +1,4 @@
+from banners.game_over import game_over
 from ghost_img.ghost_forest import ghost_forest
 from town_img.town_ghost import town_ghost
 from utils.enums import PaleState
@@ -21,6 +22,8 @@ def trapped_in_town(location, state=None):
                      f"{'\nYou feel a sharp pain in your ankle. You look down and see it is swollen and bruised.' if location == 'west' else ''}"
                      "The sun feels particularly bright. You squint and continue on. You are about to hail a car when the glare of the sun causes you to stumble. You stand.\nYou are back in front of the bar. You can see the highway. You start to walk towards it...",
                      state=state)
+    print(game_over())
+    exit()
 
 
 def blackout(state=None):
