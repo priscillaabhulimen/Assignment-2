@@ -11,14 +11,6 @@ def go_north(state, continue_game):
         state=state
     )
 
-    if state.pale_state is PaleState.NONE:
-        advance_pale(state)
-        typewriter_print(
-            "Something pale appears in the corner of your vision, "
-            "far off between the trees.",
-            state=state
-        )
-
     choice = choose(["Go Back", "Continue"])
 
     if choice == "Go Back":
@@ -49,9 +41,7 @@ def north_continue(state, continue_game):
         state=state
     )
 
-    print(current_ghost(state))
-
-    choice = choose(["Go Back", "Look Around"])
+    choice = choose(["Look Around"])
 
     if choice == "Go Back":
         clearing_go_back(state)
@@ -68,16 +58,6 @@ def clearing_go_back(state):
     if state.heard_giggling:
         blackout(state)
 
-    typewriter_print(
-        "You walk for what feels like hours.",
-        state=state
-    )
-
-    typewriter_print(
-        "Eventually, you find yourself standing at the edge of a cliff.",
-        state=state
-    )
-
     south_jump(state)
 
 
@@ -90,12 +70,8 @@ def clearing_look_around(state, continue_game):
 
     typewriter_print(
         "There are several raised mounds of earth arranged in a circle. "
-        "They are too small to contain human remains.",
-        state=state
-    )
-
-    typewriter_print(
-        "At one edge of the circle is a patch of earth that has been burned black.",
+        "They are too small to contain human remains."
+        "\nAt one edge of the circle is a patch of earth that has been burned black.",
         state=state
     )
 
@@ -119,18 +95,20 @@ def clearing_look_around(state, continue_game):
 
     elif state.pale_state is PaleState.CLEAR:
         typewriter_print(
-            "She whispers constantly.",
+            "There is crying. It rings in your ears. It is in your head.",
             state=state
         )
+
+    state.heard_crying = True
 
     if state.heard_giggling:
         blackout(state)
         south_jump(state)
 
     else:
-        choice = choose(["Leave"])
+        choice = choose(["LEAVE!"])
 
-        if choice == "Leave":
+        if choice == "LEAVE!":
             advance_pale(state)
 
             continue_game(state)
