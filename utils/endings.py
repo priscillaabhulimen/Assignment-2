@@ -23,4 +23,4 @@ def trapped_in_town(location, state=None):
 
 
 def blackout(state=None):
-    typewriter_print(f"{'\n' * 15}", state=state)
+    typewriter_print(f"{'\n' * 25}", state=state)
