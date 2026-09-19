@@ -1,7 +1,5 @@
 from dataclasses import dataclass
-from banners.game_over import game_over
-from ghost_img.ghost_forest import ghost_forest
-from utils.helpers import current_ghost, delayed_print, typewriter_print
+from utils.helpers import current_ghost, typewriter_print
 from utils.enums import LightState, PaleState, SouthState
 
 @dataclass
@@ -30,7 +28,7 @@ def advance_pale(state):
         state.pale_state = PaleState(state.pale_state.value + 1)
     ghost_message(state)
     if(state.pale_state is not PaleState.NONE):
-        typewriter_print(f"{'It' if state.pale_state is not PaleState.CLEAR else 'She'} is{'' if state.pale_state is not PaleState.DISTANT else ' still'} following.")
+        typewriter_print(f"{'It' if state.pale_state is not PaleState.CLEAR else 'She'} is{'' if not state.pale_state is PaleState.DISTANT else ' still'} following.")
         print(current_ghost(state))
 
 def is_dark(state):
@@ -56,22 +54,6 @@ def available_directions(state):
     if state.south_state is SouthState.VISIBLE: 
         dirs.append("South")
     return dirs
-
-def choose(options):
-    choice = ''
-    for i, option in enumerate(options):
-        delayed_print(f"[{i + 1}] {option}", 0.2)
-    fail_count = 0
-    while not (choice.isdigit() and len(options) >= int(choice) and int(choice) > 0):
-        choice = input("Choose an option: ")
-        fail_count += 1
-        if fail_count >= 3:
-            print(ghost_forest())
-            print(game_over())
-            exit()
-    print("\n")
-    return options[int(choice) - 1]
-
 
 
 def ghost_message(state) -> str:
