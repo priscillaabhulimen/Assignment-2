@@ -118,7 +118,6 @@ def handle_stay_inside(state, continue_game):
         )
 
     state.heard_giggling = True
-    state.heard_crying = True
     choice = random_choice(escape_options(state))
 
     if(choice == "LEAVE!"):

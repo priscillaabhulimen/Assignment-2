@@ -17,7 +17,7 @@ def delayed_print(text, delay=1):
 def listener_noise(state):
     if state is None:
         return ""
-    if not state.heard_giggling and not state.heard_crying:
+    if not state.heard_giggling and state.heard_crying:
         return ""
 
     noise_bank = [
