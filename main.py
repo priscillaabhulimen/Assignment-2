@@ -23,13 +23,13 @@ def startGame(state):
     print(game_title())
     typewriter_print("'...up. Wake up.'\nYou open your eyes. Your vision is blurry."
     "You feel disoriented. You smell wet dirt. You're lying on the ground."
-    "\nYou stand and look around. Dense forest. Through the trees the sun is low on the horizon.")
+    "\nYou stand and look around. Dense forest. Through the trees the sun is low on the horizon.", state=state)
     chooseDirection(state)
 
 
 def chooseDirection(state):
     delayed_print(current_light(state))
-    typewriter_print("\nYou can go in any of these directions:")
+    typewriter_print("\nYou can go in any of these directions:", state=state)
     direction = choose(direction_options(state))
 
     if(direction == "West"):

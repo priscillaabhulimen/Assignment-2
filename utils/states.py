@@ -9,6 +9,7 @@ class GameState:
     south_state: SouthState = SouthState.HIDDEN
 
     heard_giggling: bool = False
+    heard_crying: bool = False
     ankle_sprained: bool = False
     west_visited: bool = False
     torn_page_found: bool = False
@@ -26,9 +27,12 @@ def advance_light(state):
 def advance_pale(state):
     if state.pale_state.value < PaleState.CLEAR.value:
         state.pale_state = PaleState(state.pale_state.value + 1)
+    if state.pale_state is PaleState.CLEAR:
+        state.heard_giggling = True
+        state.heard_crying = True
     ghost_message(state)
     if(state.pale_state is not PaleState.NONE):
-        typewriter_print(f"{'It' if state.pale_state is not PaleState.CLEAR else 'She'} is{'' if not state.pale_state is PaleState.DISTANT else ' still'} following.")
+        typewriter_print(f"{'It' if state.pale_state is not PaleState.CLEAR else 'She'} is{'' if not state.pale_state is PaleState.DISTANT else ' still'} following.", state=state)
         print(current_ghost(state))
 
 def is_dark(state):

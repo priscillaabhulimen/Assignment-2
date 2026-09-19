@@ -7,14 +7,14 @@ def south_jump(state):
     typewriter_print("You open your eyes. The wind is rushing through your ears.\nYou see a figure waving at you from the ground... above."
                      "\nFalling..."
                      "\nFalling..."
-                     "\nFallen")
+                     "\nFallen", state=state)
     print(ghost_forest())
     print(game_over())
     exit()
 
 def go_south(state, continue_game):
-    typewriter_print("You head south. YOu reach the edge of a cliff. You look down. The jagged rocks below make you feel lightheaded.")
+    typewriter_print("You head south. You reach the edge of a cliff. You look down. The jagged rocks below make you feel lightheaded.", state=state)
     choose(["Turn back"])
 
-    typewriter_print("You turn around and head back.")
+    typewriter_print("You turn around and head back.", state=state)
     continue_game(state)

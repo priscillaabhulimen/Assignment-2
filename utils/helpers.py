@@ -14,11 +14,35 @@ def delayed_print(text, delay=1):
     time.sleep(delay)
     print(text)
 
-def typewriter_print(text, delay=0.05):
+def listener_noise(state):
+    if state is None:
+        return ""
+    if not state.heard_giggling and not state.heard_crying:
+        return ""
+
+    noise_bank = [
+        "l̷̛͝E̶̎̕A̵̕͠V̷͑͝E̶͌̓",
+        "s̷̓̐O̸̅̚U̶̍̕T̷̈́͝H̸͆̽",
+        "g̴̚͝o̷̿̕ ̶̈́s̷̛̐O̵͌̐u̸͌͝t̷̅͝h̶̚͝",
+        "y̷͗͝o̸̚͝u̷͛͠ ̸̐͝a̷̍͝r̸̐͝ë̷́͝ ̶̛͝n̷̈́͝o̸̿͝t̷̎͝ ̸̈́͝l̷͌͝e̷̍͝ä̸́͝v̷͝͝i̷͝͝n̸̈́͝g̷͝͝",
+        "ḧ̵́̾e̷̋͂a̷͐͐r̸̒͛ ̷̑̍ṁ̵̽e̵̛̐",
+        "t̷͌̽h̸̑͠e̴̔̑ÿ̸̓ ̶̑̄a̷̧̓r̸͋̒e̷̿̕ ̴͋̈́s̴̓͌t̶͌̅i̵̾͌l̸̽̚l̷̓̚ ̷̓̈́h̸̽͂e̵̓͘r̶̿̕ė̷̓",
+        "s̴͂̈́o̷͑̒m̷̓̿ȇ̷͋t̶̓̈́h̶̅̓i̸̓͠n̴͑͝g̷̅̽ ̸͗̽i̵̔̿s̷̓̈́ ̴̓̔w̶̅̈́h̸̋̓i̵̔̕s̸̽̎p̷̚̕e̷̍͌r̶͊̍ȋ̸͂n̵̆̌g̷̀̐"
+    ]
+    return random.choice(noise_bank)
+
+
+def typewriter_print(text, delay=0.05, state=None):
+    if state is not None and listener_noise(state):
+        words = text.split()
+        if len(words) >= 2:
+            insert_at = random.randint(1, len(words) - 1)
+            words.insert(insert_at, listener_noise(state))
+            text = " ".join(words)
     for char in text:
         print(char, end='', flush=True)
         time.sleep(delay)
-    print()  # Move to the next line after printing the text
+    print()
 
 def current_ghost(state) -> str:
     if state.pale_state is PaleState.CLEAR:
