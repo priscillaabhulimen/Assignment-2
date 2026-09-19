@@ -88,7 +88,7 @@ def esc_sequence(state, continue_game):
 def handle_stay_inside(state, continue_game):
     typewriter_print("You rush and manage to click the old lock on the door shut.")
     delayed_print("\nSLAM!")
-    typewriter_print("Something has started to ram into the door. The wood is splintering. It bursts pen")
+    typewriter_print("Something has started to ram into the door. The wood is splintering. It bursts open")
     
     if state.pale_state is PaleState.CLEAR:
         typewriter_print(
@@ -116,7 +116,6 @@ def handle_stay_inside(state, continue_game):
         )
         state.east_closed = True
         state.south_state = SouthState.LOCKED
-        state.east_closed = True
         continue_game(state)
     else:
         blackout()

@@ -56,4 +56,5 @@ def choose(options):
 def random_choice(options):
     for i, option in enumerate(options):
         delayed_print(f"[{i + 1}] {option}", 0.2)
+    input("Choose an option: ")
     return random.choice(options)
