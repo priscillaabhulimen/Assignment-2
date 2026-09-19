@@ -1,18 +1,22 @@
+from town_img.night_town import night_town
 from utils.enums import PaleState, LightState
 from utils.helpers import typewriter_print
 from utils.endings import trapped_in_town
-from banners.game_ending import game_ending
+from banners.game_ending import game_ending, town_day
 from utils.states import advance_pale
 import time
 
 
 def go_town(state):
+    
     typewriter_print(
         "You approach the town. The first building you see is a church. "
         "Its white stone glows faintly in the dim light. Beyond it, you can see "
         "a few other buildings, including what looks like a bar.",
         state=state,
     )
+
+    print(night_town())
     
     if state.torn_page_found:
         church_entry_with_page(state)
@@ -200,5 +204,5 @@ def bar_scene(state):
 
 
 def church_escape_ending(state):
-    print(game_ending())
+    print(town_day())
     exit()
