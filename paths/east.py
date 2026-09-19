@@ -1,6 +1,6 @@
 from paths.south import south_jump
 from utils.endings import blackout, trapped_in_town
-from utils.enums import PaleState, SouthState
+from utils.enums import LightState, PaleState, SouthState
 from utils.helpers import current_ghost, delayed_print, random_choice, typewriter_print, choose
 from utils.options import east_options, escape_options, look_around_options, shack_options
 from utils.states import advance_light, advance_pale
@@ -18,7 +18,6 @@ def go_east(state, continue_game):
     else:
         advance_pale(state)
         typewriter_print("You turn around and head back.")
-        advance_light(state)
         continue_game(state)
 
 
@@ -116,6 +115,8 @@ def handle_stay_inside(state, continue_game):
         )
         state.east_closed = True
         state.south_state = SouthState.LOCKED
+        
+        advance_light(state)
         continue_game(state)
     else:
         blackout()

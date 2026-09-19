@@ -1,5 +1,6 @@
 from paths.east import go_east as east_handler
 from paths.west import go_west as west_handler
+from paths.south import go_south as south_handler
 from utils.helpers import delayed_print, typewriter_print, current_light, choose
 from utils.options import direction_options
 from banners.game_title import game_title
@@ -35,6 +36,8 @@ def chooseDirection(state):
         west_handler(state, chooseDirection)
     elif(direction == "East"):
         east_handler(state, chooseDirection)
+    elif(direction == "South"):
+        south_handler(state, chooseDirection)
 
 
 if __name__ == "__main__":

@@ -11,7 +11,8 @@ def choose_first_west(state):
 
     if choice == "Continue West":
         state.west_visited = True
-        state.south_state = SouthState.VISIBLE
+        if not state.south_state is SouthState.LOCKED:
+            state.south_state = SouthState.VISIBLE
         typewriter_print(
             "You continue forward. Your ankle aches and the journey stretches."
             "\nJust ahead, you see familiar surroundings. You begin to relax, "
