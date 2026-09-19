@@ -15,11 +15,6 @@ def delayed_print(text, delay=1):
     print(text)
 
 def listener_noise(state):
-    if state is None:
-        return ""
-    if not state.heard_giggling and state.heard_crying:
-        return ""
-
     noise_bank = [
         "l̷̛͝E̶̎̕A̵̕͠V̷͑͝E̶͌̓",
         "s̷̓̐O̸̅̚U̶̍̕T̷̈́͝H̸͆̽",
@@ -29,7 +24,9 @@ def listener_noise(state):
         "t̷͌̽h̸̑͠e̴̔̑ÿ̸̓ ̶̑̄a̷̧̓r̸͋̒e̷̿̕ ̴͋̈́s̴̓͌t̶͌̅i̵̾͌l̸̽̚l̷̓̚ ̷̓̈́h̸̽͂e̵̓͘r̶̿̕ė̷̓",
         "s̴͂̈́o̷͑̒m̷̓̿ȇ̷͋t̶̓̈́h̶̅̓i̸̓͠n̴͑͝g̷̅̽ ̸͗̽i̵̔̿s̷̓̈́ ̴̓̔w̶̅̈́h̸̋̓i̵̔̕s̸̽̎p̷̚̕e̷̍͌r̶͊̍ȋ̸͂n̵̆̌g̷̀̐"
     ]
-    return random.choice(noise_bank)
+    if state.heard_giggling and state.heard_crying:
+        return random.choice(noise_bank)
+    return ""
 
 
 def typewriter_print(text, delay=0.05, state=None):
