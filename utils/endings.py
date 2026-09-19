@@ -1,5 +1,6 @@
 from ghost_img.ghost_forest import ghost_forest
 from town_img.town_ghost import town_ghost
+from utils.enums import PaleState
 from utils.helpers import typewriter_print
 
 
@@ -24,3 +25,16 @@ def trapped_in_town(location, state=None):
 
 def blackout(state=None):
     typewriter_print(f"{'\n' * 25}", state=state)
+
+def truck_ending(state):
+    typewriter_print(
+        "You devide to wait. A truck finally comes down the road.\n"
+        "You wave your arms and the driver pulls over.\n"
+        "You climb into the cab and the truck starts moving.\n"
+        f"{'You glance back through the window. The Pale Girl is following you. The driver doesn’t seem to notice her.\n' if state.pale_state is not PaleState.NONE else ''}"
+        f"The forest grows smaller and smaller in the distance. You close your eyes...",
+        state=state
+    )
+
+    print(ghost_forest())
+    exit()

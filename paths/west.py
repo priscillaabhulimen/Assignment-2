@@ -1,3 +1,5 @@
+from paths.town import go_town
+from utils.endings import truck_ending
 from utils.enums import SouthState
 from utils.helpers import typewriter_print, choose
 from utils.options import west_options
@@ -47,4 +49,8 @@ def go_west(state, continue_game):
         "You start to see fewer trees. You see a road. You can:",
         state=state,
     )
-    choose(west_options(state))
+    choice =choose(west_options(state))
+    if(choice == "Wait for a car"):
+        truck_ending(state)
+    else:
+        go_town(state)
